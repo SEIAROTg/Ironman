@@ -1,7 +1,8 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 #
 # Sorry, the comments are all in Chinese because this project highly relies on Chinese Language.
-#
+# 
+
 
 import sys, copy, random, types
 
@@ -48,7 +49,7 @@ class Ironman:
 	# 冗余计算词典中的权值
 	# 返回值：(定语权值, 中心词权值)
 	def __calc_weight(self, node):
-		if type(node) is types.StringType:
+		if type(node) is types.UnicodeType:
 			return (1, 1)
 		elif type(node) is types.TupleType:
 			attr = self.__get_attr(node)
@@ -80,7 +81,7 @@ class Ironman:
 	# 随机取得定语（t=="attr"）或中心词（t=="end"）
 	# 返回值：(结果, 定语权值减小量, 中心词权值减小量)
 	def __pick(self, node, t="attr"):
-		if type(node) is types.StringType:
+		if type(node) is types.UnicodeType:
 			return (node, 0, 0)
 		else:
 			attr = self.__get_attr(node)
@@ -112,7 +113,7 @@ class Ironman:
 				curr[0]["c_lim"] = attr_c["c_lim"]
 				node[0]["_w_attr"] -= dw_attr
 				node[0]["_w_end"] -= dw_end
-			if (type(attr["end"]) is types.StringType) and (t == "end"):
+			if (type(attr["end"]) is types.UnicodeType) and (t == "end"):
 				ret = ret + attr["end"]
 			return (ret, dw_attr, dw_end)
 
