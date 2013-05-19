@@ -3,6 +3,8 @@
 #
 # Sorry, the comments are all in Chinese because this project highly relies on Chinese Language.
 #
+# 示例程序
+#
 
 import Ironman, wordslist
 
