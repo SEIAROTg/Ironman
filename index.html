@@ -1,0 +1,66 @@
+<!doctype html>
+
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Ironman2 (Armour-bug) demo</title>
+		<script type="text/javascript" src="generator.min.js"></script>
+		<script type="text/javascript">
+window.onload = function() {
+	var gen = new generator(dictionary, 2, 4, 5, 0.1);
+	var dd = 0;
+	function mousewheel(p) {
+		if (dd > 5000 && p.wheelDelta > 0) return;
+		
+		if (p.wheelDelta > 0) {
+			dd += parseInt(p.wheelDelta)
+		} else {
+			if (dd <= 0) {
+				dd = 0;
+				var span = document.createElement('span');
+				span.classList.add('bug');
+				span.innerHTML = gen.next();
+				span.style.top = window.innerHeight + 'px';
+				var d = Math.random() * 40 - 20;
+				var r = 'rotate(' + d + 'deg)'
+				span.style.webkitTransform = r;
+				span.style.mozTransform = r;
+				span.style.oTransform = r;
+				span.style.msTransform = r;
+				span.style.transform = r;
+				document.body.appendChild(span);
+				span.style.left = Math.random() * (window.innerWidth - span.offsetWidth) + 'px';
+			} else {
+				dd += parseInt(p.wheelDelta)
+			}
+		}
+		bugs = document.getElementsByClassName('bug');
+		for (var i = 0; i < bugs.length; ++i) {
+			var t = parseInt(bugs[i].style.top);
+			if (t < -5000) {
+				document.body.removeChild(bugs[i])
+			} else {
+				bugs[i].style.top = t + p.wheelDelta + 'px';
+			}
+		}
+	}
+	document.addEventListener('mousewheel',mousewheel,false);
+}
+		</script>
+		<style>
+body {
+	background-color: #000;
+	color: #fff;
+	font-family: "Microsoft YaHei", "SimHei", "Tahoma", "Simsun";
+	font-size: 40px;
+	font-weight: bold;
+	overflow: hidden;
+}
+.bug {
+	position: absolute;
+}
+		</style>
+	</head>
+	<body>
+	</body>
+</html>
