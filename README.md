@@ -1,7 +1,4 @@
-Ironman
+Ironman 2 (Armour-bug)
 =======
 
-generate funny things in Chinese
-
-Because this project is highly dependent upon Chinese Language, all comments are in Chinese.
-
+generate funny things in Simplified Chinese
