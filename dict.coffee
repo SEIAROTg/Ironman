@@ -14,9 +14,9 @@ module.exports = dictlib.create_dict (builder) ->
 	builder.register_tag 'n2d', 'de', ['main'], 'suffix'
 
 	builder.set_order [
-		'single'
-		'modifier'
 		'de'
+		'modifier'
+		'single'
 	]
 
 	builder.words_add -1, ['v2n'], ['机', '器', '车', '厂', '队', '匠', '术']
