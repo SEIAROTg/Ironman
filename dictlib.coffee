@@ -168,7 +168,7 @@ class dict_builder
 		by default, the order is [modifier]
 	###
 	set_order: (order_list) ->
-		console.warn 'WARN: "modifier" doesn\'t appear in order list' unless 'modifier' in order_list
+		console.warn 'WARN: "default" doesn\'t appear in order list' unless 'default' in order_list
 		@order = order_list.slice()
 
 

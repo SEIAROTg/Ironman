@@ -70,15 +70,31 @@ class generator
 				modifier.tags = [suffix.tag]
 		
 		# order modifiers
-		for tag in @dict.order
-			words = []
+		words =
+			default: []
+		for otag in @dict.order when otag isnt 'default'
+			words[otag] = []
 			for modifier in modifiers
-				if tag in modifier.tags
-					words.push modifier.word
-					modifiers.slice _i, 1
-			words.sort (a, b) ->
+				b = false
+				for tag in modifier.tags
+					t = tag
+					while true
+						if t == otag and not modifier['used']
+							words[otag].push modifier.word
+							modifier['used'] = true
+							b = true
+							break
+						break if t in ['main', 'modifier', 'other']
+						t = @dict.taglist[t].parent
+					break if b
+			words[otag].sort (a, b) ->
 				b.length - a.length
-			order.push words...
+		for otag in @dict.order
+			if otag == 'default'
+				for modifier in modifiers when not modifier['used']
+					order.push modifier['word']
+			else
+				order.push words[otag]...
 
 		order.join('') + main.word
 

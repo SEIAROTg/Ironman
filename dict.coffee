@@ -15,7 +15,7 @@ module.exports = dictlib.create_dict (builder) ->
 
 	builder.set_order [
 		'de'
-		'modifier'
+		'default'
 		'single'
 	]
 
