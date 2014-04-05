@@ -89,11 +89,9 @@ class generator
 					break if b
 			words[otag].sort (a, b) ->
 				b.length - a.length
+		for modifier in modifiers when not modifier['used']
+			words['default'].push modifier['word']
 		for otag in @dict.order
-			if otag == 'default'
-				for modifier in modifiers when not modifier['used']
-					order.push modifier['word']
-			else
 				order.push words[otag]...
 
 		order.join('') + main.word
